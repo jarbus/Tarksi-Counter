@@ -32,6 +32,8 @@ int main(){
             //Calculate how many different worlds are possible adding smaller piece
             smaller_variants(world_count);
             int two_power = pow(2,n-l);
+            int three_power = pow(3,n);
+            int nplusone = pow(n+1,6); 
             mpz_mul_si(tmp,tmp,two_power);
             mpz_mul(tmp,tmp,world_count);
             mpz_add(tmp,world_count,tmp);
