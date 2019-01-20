@@ -29,9 +29,7 @@ class board{
                     b[x+i][y+i]=1;
                 }
             }
-
              
-
         
         }
 
