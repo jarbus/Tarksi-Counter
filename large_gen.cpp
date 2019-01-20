@@ -2,6 +2,7 @@
 #include <iostream>
 
 using namespace std;
+typedef long long int llint;
 class board{
     public:
         int b[8][8]; 
@@ -38,9 +39,17 @@ class board{
         }
 };
 
+void stamp(llint * board, llint x, llint y){
+    llint THREE = 7;
+    llint TOP = THREE << ((x-1)*8 + (y-1));
+    llint MIDDLE = THREE << (x*8 + (y-1));
+    llint BOTTOM = THREE << ((x+1)*8 + (y-1);
+    *board = *board | TOP | MIDDLE | BOTTOM;
+}
+
 int main(){
     
-    long long int bit_board; //64 bit integer, could replace board class and have operations performed via bitwise operators
+    llint bit_board; //64 bit integer, could replace board class and have operations performed via bitwise operators
 
     //space_count is n x m matrix s.t. n is number of large blocks and m is the amount of spaces it
     //has free
