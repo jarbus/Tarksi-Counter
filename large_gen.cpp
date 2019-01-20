@@ -39,6 +39,9 @@ class board{
 };
 
 int main(){
+    
+    long long int bit_board; //64 bit integer, could replace board class and have operations performed via bitwise operators
+
     //space_count is n x m matrix s.t. n is number of large blocks and m is the amount of spaces it
     //has free
     //@return number of worlds that have m free spaces for l blocks
