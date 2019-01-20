@@ -4,7 +4,7 @@
 using namespace std;
 class board{
     public:
-        bool b[8][8]; 
+        int b[8][8]; 
         //Constructor - initializes b to a 12x12 array of bool
         board(){
             for(int i=0;i<8;i++){
@@ -14,6 +14,7 @@ class board{
             }       
         }
         void stamp(int x, int y){
+            
             //Bad input handling
             if(0>x || x>7 || y<0 || y>7){
                 cerr << "Invalid matrix input!\n";
@@ -21,21 +22,20 @@ class board{
             }
             if(b[x][y]==1)
                 return;
-            b[x][y]=1;
+            int parent[][]=b;
+
+            b[x][y]=2;
+
 
             for(int i=-1; i <=1; i++){
                 for(int j=-1;j<=1;j++){
-                    if(x+i<0 || x+i > 7 || y+j < 0 || y+j > 7) continue;
+                    if(x+i<0 || x+i > 7 || y+j < 0 || y+j > 7 || (i==0 && j==0)) continue;
                     b[x+i][y+i]=1;
                 }
             }
              
         
         }
-
-
-
-
 };
 
 int main(){
@@ -48,6 +48,7 @@ int main(){
             space_count[i][j] = 0;
         }
     }
+    
     
 
 
