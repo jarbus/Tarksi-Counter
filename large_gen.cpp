@@ -24,8 +24,10 @@ typedef uint64_t llint;
 }
 */
 //places a 3x3 grid of 1s into the uint64_t
-llint stamp(llint * board, llint row, llint col){
+llint stamp(llint * board, llint spot){
     llint VAR,TOP,BOTTOM;
+    llint row = spot/8;
+    llint col = spot%8;
     if(col==0|| col==7){
         VAR=3;
         if(col==7) col -=1;
@@ -71,8 +73,8 @@ int main(){
     //space_count is n x m matrix s.t. n is number of large blocks and m is the amount of spaces it
     //has free
     //@return number of worlds that have m free spaces for l blocks
-    llint space_count[12][65];
-    for(llint i=0;i<12;i++){
+    llint space_count[13][65];
+    for(llint i=0;i<13;i++){
         for(llint j=0;j<65;j++){
             space_count[i][j] = 0;
         }
@@ -89,73 +91,115 @@ int main(){
         }
     }
  */   
-    llint bb1, count1, bb2, count2, bb3, count3, bb4, count4, bb5, count5, bb6, count6;
+    llint bb1, count1, bb2, count2, bb3, count3, bb4, count4, bb5, count5, bb6, count6, bb7, count7, bb8, count8, bb9, count9, bb10, count10, bb11, count11,bb12,count12;
     llint i,j,k,l,m,n,o,p,q,r,s,t;
-    for(i=0;i<8;i++){
-        for(j=0;j<8;j++){
-            count1 = stamp(&bit_board,i,j);
+    for(i=0;i<64;i++){
+            count1 = stamp(&bit_board,i);
             space_count[1][count1]+=1;
             bb1 = bit_board;
             //next loop
 
-            for(k=0; k<8; k++){
-                for(l=0;l<8;l++){
-                    if((bit_board >> (k*8 + l)) & 1) continue;
-                    count2 = stamp(&bit_board,k,l);
+            for(k=i+1; k<64; k++){
+                    if((bit_board >> k) & 1) continue;
+                    count2 = stamp(&bit_board,k);
                     space_count[2][count2]+=1;
                     bb2 = bit_board;
                     //next loop
 
-                    for(m=0; m<8; m++){
-                        for(n=0;n<8;n++){
-                            if((bit_board >> (m*8 + n)) & 1) continue;
-                            count3 = stamp(&bit_board,m,n);
+                    for(m=k+1; m<64; m++){
+                            if((bit_board >> m) & 1) continue;
+                            count3 = stamp(&bit_board,m);
                             space_count[3][count3]+=1;
                             bb3 = bit_board;
                             //next loop
 
-                            for(o=0; o<8; o++){
-                                for(p=0;p<8;p++){
-                                    if((bit_board >>(o*8 + p)) & 1) continue;
-                                    count4 = stamp(&bit_board,o,p);
+                            for(o=m+1; o<64; o++){
+                                    if((bit_board >>o) & 1) continue;
+                                    count4 = stamp(&bit_board,o);
                                     space_count[4][count4]+=1;
                                     bb4 = bit_board;
                                     //next loop
 
-                                    for(q=0; q<8; q++){
-                                        for(r=0;r<8;r++){
-                                            if((bit_board >> (q*8 + r)) & 1) continue;
-                                            count5 = stamp(&bit_board,q,r);
+                                    for(q=o+1; q<64; q++){
+                                            if((bit_board >> q) & 1) continue;
+                                            count5 = stamp(&bit_board,q);
                                             space_count[5][count5]+=1;
                                             bb5 = bit_board;
                                             //next loop
 
-                                            for(s=0; s<8; s++){
-                                                for(t=0;t<8;t++){
-                                                    if((bit_board >> (s*8 + t)) & 1) continue;
-                                                    count6 = stamp(&bit_board,s,t);
+                                            for(s=q+1; s<64; s++){
+                                                    if((bit_board >> s) & 1) continue;
+                                                    count6 = stamp(&bit_board,s);
                                                     space_count[6][count6]+=1;
                                                     bb6 = bit_board;
                                                     //next loop
 
+                                                for(j=s+1; j<64; j++){
+                                                        if((bit_board >> j) & 1) continue;
+                                                        count7 = stamp(&bit_board,j);
+                                                        space_count[7][count7]+=1;
+                                                        bb7 = bit_board;
+                                                        //next loop
+                                                    for(l=j+1; l<64; l++){
+                                                            if((bit_board >> l) & 1) continue;
+                                                            count8 = stamp(&bit_board,l);
+                                                            space_count[8][count8]+=1;
+                                                            bb8 = bit_board;
+                                                            //next loop
+
+                                                        for(n=l+1; n<64; n++){
+                                                                if((bit_board >> n) & 1) continue;
+                                                                count9 = stamp(&bit_board,n);
+                                                                space_count[9][count9]+=1;
+                                                                bb9 = bit_board;
+                                                                //next loop
+                                                            for(p=n+1; p<64; p++){
+                                                                    if((bit_board >> p) & 1) continue;
+                                                                    count10 = stamp(&bit_board,p);
+                                                                    space_count[10][count10]+=1;
+                                                                    bb10 = bit_board;
+                                                                    //next loop
+                                                                for(r=p+1; r<64; r++){
+                                                                        if((bit_board >> r) & 1) continue;
+                                                                        count11 = stamp(&bit_board,r);
+                                                                        space_count[11][count11]+=1;
+                                                                        bb11 = bit_board;
+                                                                        //next loop
+                                                                    for(t=r+1; t<64; t++){
+                                                                            if((bit_board >> t) & 1) continue;
+                                                                            count12 = stamp(&bit_board,t);
+                                                                            space_count[12][count12]+=1;
+                                                                            bb12 = bit_board;
+                                                                            //next loop
+
+                                                                            bit_board = bb11;
+                                                                        }
+
+                                                                        bit_board = bb10;
+                                                                    }
+
+                                                                    bit_board = bb9;
+                                                                }
+
+                                                                bit_board = bb8;
+                                                            }
+                                                            bit_board = bb7;
+                                                        }
+
+                                                        bit_board = bb6;
+                                                    }
                                                     bit_board = bb5;
                                                 }
-                                            }
                                             bit_board = bb4;
                                         }
-                                    }
                                     bit_board = bb3;
                                 }
-                            }
                             bit_board = bb2;
                         }
-                    }
                     bit_board = bb1;
                 }
-            }
             bit_board=0;
         }
-    }
 
     // Formatting final chart
     cout << "   ";
@@ -163,7 +207,7 @@ int main(){
         printf("%16" PRIu64,i);
     }
     cout << endl;
-    for(llint i=0;i<12;i++){
+    for(llint i=0;i<13;i++){
         cout << i << "  " ;
         for(llint j=0;j<65;j++){
             printf("%16" PRIu64,space_count[i][j]);
