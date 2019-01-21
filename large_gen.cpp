@@ -84,10 +84,15 @@ int main(){
         boards[i]=0;
     }
     */
-    stamp(&bit_board,1,1);
-    stamp(&bit_board,8,8);
-    stamp(&bit_board,1,7);
-    stamp(&bit_board,4,4);
-//  print_board(bit_board);
+    /* ERROR CHECKING FOR STAMP
+    for(int i=1;i<9;i++){
+        for(int j=1;j<9;j++){
+            stamp(&bit_board,i,j);
+            cout<<i<<" "<<j<<endl;
+            print_board(bit_board);
+            bit_board=0;
+        }
+    }
+    */
 
 }
