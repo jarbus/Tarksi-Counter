@@ -71,24 +71,24 @@ int main(){
     //space_count is n x m matrix s.t. n is number of large blocks and m is the amount of spaces it
     //has free
     //@return number of worlds that have m free spaces for l blocks
-    llint space_count[12][64];
+    llint space_count[12][65];
     for(llint i=0;i<12;i++){
-        for(llint j=0;j<64;j++){
+        for(llint j=0;j<65;j++){
             space_count[i][j] = 0;
         }
     }
     space_count[0][0]=1;
-
+/*
     // ERROR CHECKING FOR STAMP
-    /*for(int i=0;i<8;i++){
+    for(int i=0;i<8;i++){
         for(int j=0;j<8;j++){
             stamp(&bit_board,i,j);
             cout<<i<<" "<<j<<endl;
             print_board(bit_board);
             bit_board=0;
         }
-    }*/
-    
+    }
+ */   
     llint bb1, count1, bb2, count2, bb3, count3, bb4, count4, bb5, count5, bb6, count6;
     llint i,j,k,l,m,n,o,p,q,r,s,t;
     for(i=0;i<8;i++){
@@ -158,15 +158,15 @@ int main(){
     }
 
     // Formatting final chart
-    cout << "  ";
+    cout << "   ";
     for(llint i=0;i<65;i++){
-        printf("%8" PRIu64,i);
+        printf("%16" PRIu64,i);
     }
     cout << endl;
     for(llint i=0;i<12;i++){
         cout << i << "  " ;
-        for(llint j=0;j<64;j++){
-            printf("%8" PRIu64,space_count[i][j]);
+        for(llint j=0;j<65;j++){
+            printf("%16" PRIu64,space_count[i][j]);
         }
         cout <<endl;
     }
