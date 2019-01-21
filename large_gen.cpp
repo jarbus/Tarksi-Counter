@@ -98,6 +98,7 @@ int main(){
 
             for(int k=1; k<9; k++){
                 for(int l=1;l<9;l++){
+                    if((bit_board >> ((k-1)*8 + l-1)) & 1) continue;
                     int count2 = stamp(&bit_board,k,l);
                     space_count[2][count2]+=1;
                     int bb2 = bit_board;
@@ -105,6 +106,7 @@ int main(){
 
                     for(int m=1; m<9; m++){
                         for(int n=1;n<9;n++){
+                            if((bit_board >> ((m-1)*8 + n-1)) & 1) continue;
                             int count3 = stamp(&bit_board,m,n);
                             space_count[3][count3]+=1;
                             int bb3 = bit_board;
@@ -112,6 +114,7 @@ int main(){
 
                             for(int o=1; o<9; o++){
                                 for(int p=1;p<9;p++){
+                                    if((bit_board >> ((o-1)*8 + p-1)) & 1) continue;
                                     int count4 = stamp(&bit_board,o,p);
                                     space_count[4][count4]+=1;
                                     int bb4 = bit_board;
@@ -119,6 +122,7 @@ int main(){
                                     
                                     for(int q=1; q<9; q++){
                                         for(int r=1;r<9;r++){
+                                            if((bit_board >> ((q-1)*8 + r-1)) & 1) continue;
                                             int count5 = stamp(&bit_board,q,r);
                                             space_count[5][count5]+=1;
                                             int bb5 = bit_board;
