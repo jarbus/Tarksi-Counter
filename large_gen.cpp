@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+#include <time.h>
 using namespace std;
 const uint64_t m1  = 0x5555555555555555; //binary: 0101...
 const uint64_t m2  = 0x3333333333333333; //binary: 00110011..
@@ -23,8 +24,12 @@ int popcount64c(uint64_t x)
 
 //places a 3x3 grid of 1s into the uint64_t
 void stamp(llint * board, llint row, llint col){
-    llint VAR,TOP,MIDDLE,BOTTOM;
-    if(col==1 || col==7){
+    llint VAR = 0;
+    llint TOP=0;
+    llint MIDDLE=0;
+    llint BOTTOM=0;
+    row = row-1;
+    if(col==1|| col==7){
         VAR=3;
     }
     else{
@@ -57,6 +62,7 @@ int main(){
     //space_count is n x m matrix s.t. n is number of large blocks and m is the amount of spaces it
     //has free
     //@return number of worlds that have m free spaces for l blocks
+    /*
     int space_count[12][64];
     for(int i=0;i<12;i++){
         for(int j=0;j<64;j++){
@@ -68,11 +74,14 @@ int main(){
     for(int i=0;i<12;i++){
         boards[i]=0;
     }
-    stamp(&bit_board,0,1);
+    */
+    // row apparently has to be one bigger than col
+    stamp(&bit_board,1,1);
+    cout << popcount64c(bit_board) << endl;
     print_board(bit_board);
-
-
-
-
+    stamp(&bit_board,8,8);
+    cout << popcount64c(bit_board) << endl;
+    print_board(bit_board);
+    //print_board(bit_board);
 
 }
