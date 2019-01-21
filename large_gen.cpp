@@ -71,19 +71,14 @@ int main(){
     //space_count is n x m matrix s.t. n is number of large blocks and m is the amount of spaces it
     //has free
     //@return number of worlds that have m free spaces for l blocks
-    /*
     int space_count[12][64];
     for(int i=0;i<12;i++){
         for(int j=0;j<64;j++){
             space_count[i][j] = 0;
         }
     }
-    
-    llint boards [12];
-    for(int i=0;i<12;i++){
-        boards[i]=0;
-    }
-    */
+    space_count[0][0]=1;
+
     /* ERROR CHECKING FOR STAMP
     for(int i=1;i<9;i++){
         for(int j=1;j<9;j++){
@@ -94,5 +89,72 @@ int main(){
         }
     }
     */
+    for(int i=1;i<9;i++){
+        for(int j=1;j<9;j++){
+            int count1 = stamp(&bit_board,i,j);
+            space_count[1][count1]+=1;
+            int bb1 = bit_board;
+            //next loop
+
+            for(int k=1; k<9; k++){
+                for(int l=1;l<9;l++){
+                    int count2 = stamp(&bit_board,k,l);
+                    space_count[2][count2]+=1;
+                    int bb2 = bit_board;
+                    //next loop
+
+                    for(int m=1; m<9; m++){
+                        for(int n=1;n<9;n++){
+                            int count3 = stamp(&bit_board,m,n);
+                            space_count[3][count3]+=1;
+                            int bb3 = bit_board;
+                            //next loop
+
+                            for(int o=1; o<9; o++){
+                                for(int p=1;p<9;p++){
+                                    int count4 = stamp(&bit_board,o,p);
+                                    space_count[4][count4]+=1;
+                                    int bb4 = bit_board;
+                                    //next loop
+                                    
+                                    for(int q=1; q<9; q++){
+                                        for(int r=1;r<9;r++){
+                                            int count5 = stamp(&bit_board,q,r);
+                                            space_count[5][count5]+=1;
+                                            int bb5 = bit_board;
+                                            //next loop
+                                            bit_board = bb4;
+                                        }
+                                    }
+                                    bit_board = bb3;
+                                }
+                            }
+                            bit_board = bb2;
+                    }
+                }
+                    bit_board = bb1;
+                }
+            }
+            bit_board=0;
+        }
+    }
+
+
+
+
+    // Formatting final chart
+    cout << "  ";
+    for(int i=0;i<65;i++){
+        cout << i << " ";
+    }
+    cout << endl;
+    for(int i=0;i<12;i++){
+        cout << i << "  " ;
+        for(int j=0;j<64;j++){
+            cout << space_count[i][j] << " ";
+        }
+        cout <<endl;
+    }
+
 
 }
