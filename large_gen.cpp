@@ -23,26 +23,35 @@ int popcount64c(uint64_t x)
 }
 
 //places a 3x3 grid of 1s into the uint64_t
-void stamp(llint * board, llint row, llint col){
+llint stamp(llint * board, llint row, llint col){
     llint VAR = 0;
     llint TOP=0;
     llint MIDDLE=0;
     llint BOTTOM=0;
-    row = row-1;
-    if(col==1|| col==7){
+    if(col==1|| col==8){
         VAR=3;
+        if(col==8) col -=1;
+        col -= 1;
     }
     else{
         VAR=7;
+        col -= 2;
     }
+    row = row-1;
     if(row>0)
-        TOP = VAR << ((row-1)*8 + (col-1));
+        TOP = VAR << ((row-1)*8 + col);
     
-    MIDDLE = VAR << (row*8 + (col-1));
+    MIDDLE = VAR << (row*8 + col);
 
     if(row<7)
-        BOTTOM = VAR << ((row+1)*8 + (col-1));
+        BOTTOM = VAR << ((row+1)*8 + col);
+
     *board = *board | TOP | MIDDLE | BOTTOM;
+    llint x=*board;
+    x -= (*board >> 1) & m1;             //put count of each 2 bits into those 2 bits
+    x = (x & m2) + ((x >> 2) & m2); //put count of each 4 bits into those 4 bits 
+    x = (x + (x >> 4)) & m4;        //put count of each 8 bits into those 8 bits 
+    return (x * h01) >> 56;  //returns left 8 bits of x + (x<<8) + (x<<16) + (x<<24) + ... 
 }
 
 void print_board(llint board){
@@ -77,11 +86,13 @@ int main(){
     */
     // row apparently has to be one bigger than col
     stamp(&bit_board,1,1);
-    cout << popcount64c(bit_board) << endl;
-    print_board(bit_board);
+//  print_board(bit_board);
     stamp(&bit_board,8,8);
-    cout << popcount64c(bit_board) << endl;
-    print_board(bit_board);
-    //print_board(bit_board);
+//  print_board(bit_board);
+    
+    stamp(&bit_board,1,7);
+//  print_board(bit_board);
+    stamp(&bit_board,4,4);
+//  print_board(bit_board);
 
 }
