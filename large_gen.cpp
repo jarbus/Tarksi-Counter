@@ -14,14 +14,14 @@ typedef uint64_t llint;
 //literally stolen from https://en.wikipedia.org/wiki/Hamming_weight ty for the
 //donation
 //@return the number of 1 bits in uint64_t
-int popcount64c(uint64_t x)
+/*int popcount64c(uint64_t x)
 {
     x -= (x >> 1) & m1;             //put count of each 2 bits into those 2 bits
     x = (x & m2) + ((x >> 2) & m2); //put count of each 4 bits into those 4 bits 
     x = (x + (x >> 4)) & m4;        //put count of each 8 bits into those 8 bits 
     return (x * h01) >> 56;  //returns left 8 bits of x + (x<<8) + (x<<16) + (x<<24) + ... 
 }
-
+*/
 //places a 3x3 grid of 1s into the uint64_t
 llint stamp(llint * board, llint row, llint col){
     llint VAR = 0;
@@ -84,14 +84,9 @@ int main(){
         boards[i]=0;
     }
     */
-    // row apparently has to be one bigger than col
     stamp(&bit_board,1,1);
-//  print_board(bit_board);
     stamp(&bit_board,8,8);
-//  print_board(bit_board);
-    
     stamp(&bit_board,1,7);
-//  print_board(bit_board);
     stamp(&bit_board,4,4);
 //  print_board(bit_board);
 
