@@ -12,6 +12,6 @@ world_count = 0;
 for n in range(13):
     row = f.readlines()
     for j in range(65):
-        world_count += (3**n)*(2**n)*((n+1)**6)*ncr(j,n)
-print(world_count)
-
+        for l in range(n+1):
+            world_count += (3**n)*(2**(n-l))*((n+1)**6)*ncr(j,n-l)
+print("There are",world_count,"tarski worlds. This number has",len(str(world_count)),"digits!")
