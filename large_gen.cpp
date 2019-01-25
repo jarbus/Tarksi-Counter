@@ -177,15 +177,12 @@ int main(){
 
                                                                         bit_board = bb10;
                                                                     }
-
                                                                     bit_board = bb9;
                                                                 }
-
                                                                 bit_board = bb8;
                                                             }
                                                             bit_board = bb7;
                                                         }
-
                                                         bit_board = bb6;
                                                     }
                                                     bit_board = bb5;
@@ -202,13 +199,7 @@ int main(){
         }
 
     // Formatting final chart
-    cout << "   ";
-    for(llint i=0;i<65;i++){
-        printf("%16" PRIu64,i);
-    }
-    cout << endl;
     for(llint i=0;i<13;i++){
-        cout << i << "  " ;
         for(llint j=0;j<65;j++){
             printf("%16" PRIu64,space_count[i][j]);
         }
