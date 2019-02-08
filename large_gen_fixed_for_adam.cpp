@@ -2,7 +2,9 @@
 #include <iostream>
 #include <time.h>
 #include <inttypes.h>
+
 using namespace std;
+
 const uint64_t m1  = 0x5555555555555555; //binary: 0101...
 const uint64_t m2  = 0x3333333333333333; //binary: 00110011..
 const uint64_t m4  = 0x0f0f0f0f0f0f0f0f; //binary:  4 zeros,  4 ones ...
@@ -22,6 +24,7 @@ const uint64_t h01 = 0x0101010101010101; //the sum of 256 to the power of 0,1,2,
     return (x * h01) >> 56;  //returns left 8 bits of x + (x<<8) + (x<<16) + (x<<24) + ... 
 }
 */
+
 //places a 3x3 grid of 1s into the uint64_t
 uint64_t stamp(uint64_t * board, uint64_t spot){
     uint64_t VAR,TOP,BOTTOM;
@@ -79,17 +82,28 @@ int main(){
         }
     }
     space_count[0][0]=1;
-/*
+
+
     // ERROR CHECKING FOR STAMP
-    for(int i=0;i<8;i++){
-        for(int j=0;j<8;j++){
-            stamp(&bit_board,i,j);
-            cout<<i<<" "<<j<<endl;
+    for(uint64_t i=0;i<64;i++){
+        stamp(&bit_board,i);
+//        cout<<i<<endl;
+        uint64_t bb = bit_board;
+
+        for(uint64_t j=0;j<64;j++){
+            if((bit_board >> j) & 1) continue;
+            stamp(&bit_board,j);
+            cout<<i<<endl;
+            cout<<j<<endl;
             print_board(bit_board);
-            bit_board=0;
+            bit_board=bb;
         }
+
+//        print_board(bit_board);
+        bit_board=0;
     }
- */   
+
+   
     uint64_t bb1, count1, bb2, count2, bb3, count3, bb4, count4, bb5, count5, bb6, count6, bb7, count7, bb8, count8, bb9, count9, bb10, count10, bb11, count11,bb12,count12;
     uint64_t i,j,k,l,m,n,o,p,q,r,s,t;
     for(i=0;i<64;i++){
