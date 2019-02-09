@@ -7,11 +7,12 @@ def ncr(n, r):
     denom = reduce(op.mul, range(1, r+1), 1)
     return int(numer / denom)
 
-f = open("chart.txt")
+f = open("chart_loop.txt")
 world_count = 0;
+data = f.readlines()
 for n in range(13):
-    row = f.readlines()
-    for j in range(65):
-        for l in range(n+1):
-            world_count += (3**n)*(2**(n-l))*((n+1)**6)*ncr(j,n-l)
+    data[n] = data[n].split()
+    for l in range(n+1):
+        for j in range(65):
+            world_count += int(data[l][64-j])*(3**n)*(2**(n-l))*((n+1)**6)*ncr(j,n-l)
 print("There are",world_count,"tarski worlds. This number has",len(str(world_count)),"digits!")
