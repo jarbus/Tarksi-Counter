@@ -83,13 +83,11 @@ int main(){
     }
     space_count[0][0]=1;
 
-
+/*
     // ERROR CHECKING FOR STAMP
     for(uint64_t i=0;i<64;i++){
         stamp(&bit_board,i);
-        //        cout<<i<<endl;
         uint64_t bb = bit_board;
-
         for(uint64_t j=0;j<64;j++){
             if((bit_board >> j) & 1) continue;
             stamp(&bit_board,j);
@@ -98,10 +96,9 @@ int main(){
             print_board(bit_board);
             bit_board=bb;
         }
-
-        //        print_board(bit_board);
         bit_board=0;
     }
+*/
 
 
     uint64_t bb1, count1, bb2, count2, bb3, count3, bb4, count4, bb5, count5, bb6, count6, bb7, count7, bb8, count8, bb9, count9, bb10, count10, bb11, count11,bb12,count12;
@@ -182,12 +179,8 @@ int main(){
                                                     if((bit_board >> t) & 1) continue;
                                                     count12 = stamp(&bit_board,t);
                                                     space_count[12][count12]+=1;
-                                                    bb12 = bit_board;
-                                                    //next loop
-
                                                     bit_board = bb11;
                                                 }
-
                                                 bit_board = bb10;
                                             }
                                             bit_board = bb9;
@@ -218,6 +211,4 @@ int main(){
         }
         cout <<endl;
     }
-
-
 }
